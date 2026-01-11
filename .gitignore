@@ -4,3 +4,4 @@
 att/
 .cz.toml
 COMMIT_MSG_FILE
+/tests/tex

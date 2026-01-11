@@ -10,20 +10,20 @@ filters:
 
 Here is a diagram using LaTeX`s library:
 
+
+
+```{=tex}
+\begin{statement}{Hello}
+\lipsum[2]
+\end{statement}
+```
+
 ```{=tex}
 \begin{forest}
   [one
     [two]
     [three]
+    [four]
   ]
 \end{forest}
 ```
-
-::: {width=50%}
-```{=tex}
-\begin{statement}{Hello}
-Hogehoge
-Hogehoge
-\end{statement}
-```
-:::

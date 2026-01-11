@@ -22,7 +22,7 @@ local function tikz2image(src, filetype, outfile)
         os.rename("tmp_tex.pdf", "att/" .. outfile)
     else
         -- os.execute("pdf2svg tmp_tex.pdf " .. outfile)
-        os.execute("magick tmp_tex.pdf " .. outfile)
+        os.execute("magick convert -density 900 -units PixelsPerInch tmp_tex.pdf " .. outfile)
         os.rename(outfile, "att/" .. outfile)
     end
     -- use os.remove to delete the temporary files
