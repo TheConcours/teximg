@@ -5,7 +5,7 @@ format:
   pdf:
     include-in-header: preamble.sty
 filters:
-  - teximg
+  - ../_extensions/teximg/teximg.lua
 ---
 
 Here is a diagram using LaTeX`s library:
@@ -18,3 +18,12 @@ Here is a diagram using LaTeX`s library:
   ]
 \end{forest}
 ```
+
+::: {width=50%}
+```{=tex}
+\begin{statement}{Hello}
+Hogehoge
+Hogehoge
+\end{statement}
+```
+:::

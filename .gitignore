@@ -1,6 +1,6 @@
 *.html
 *.pdf
 *_files/
-/.DS_Store
-/.auctex-auto/
-/att/.DS_Store
+att/
+.cz.toml
+COMMIT_MSG_FILE
