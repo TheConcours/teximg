@@ -13,8 +13,14 @@ Here is a diagram using LaTeX`s library:
 
 
 ```{=tex}
+\begin{headsup}[DarkGreen]{Hello}
+\lipsum[3]
+\end{headsup}
+```
+
+```{=tex}
 \begin{statement}{Hello}
-\lipsum[2]
+\lipsum[3]
 \end{statement}
 ```
 

@@ -62,3 +62,112 @@
   title=#2,
   #1,
 }
+
+\colorlet{colexam}{red!75!black}
+
+\tcbset{
+  general/.style={
+    empty,
+    frame engine=path,
+    colframe=yellow!10,
+    sharp corners,
+    % title={Example \thetcbcounter},
+    attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+    boxed title style={size=minimal, top=4pt, left=4pt},
+    coltitle=colexam,fonttitle=\large\bfseries\sffamily,
+  },
+  base/.style={
+    empty,
+    frame engine=path,
+    colframe=yellow!10,
+    sharp corners,
+    % title={Example \thetcbcounter},
+    attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+    boxed title style={size=minimal, top=4pt, left=4pt},
+    fonttitle=\large\bfseries\sffamily,
+  }
+}
+
+
+\newtcolorbox{defin}[1][]{%
+    title=#1,
+    colback=green!10,enhanced,
+	attach boxed title to top left={xshift=-4mm},boxrule=0pt,after skip=1cm,before skip=1cm,right skip=0cm,breakable,fonttitle=\bfseries,toprule=0pt,bottomrule=0pt,rightrule=0pt,leftrule=4pt,arc=0mm,skin=enhancedlast jigsaw,sharp corners,colframe=gree,colbacktitle=gre,boxed title style={
+		frame code={
+			\fill[gre](frame.south west)--(frame.north west)--(frame.north east)--([xshift=3mm]frame.east)--(frame.south east)--cycle;
+			\draw[line width=1mm,gre]([xshift=2mm]frame.north east)--([xshift=5mm]frame.east)--([xshift=2mm]frame.south east);
+
+			\draw[line width=1mm,gre]([xshift=5mm]frame.north east)--([xshift=8mm]frame.east)--([xshift=5mm]frame.south east);
+			\fill[green!40](frame.south west)--+(4mm,-2mm)--+(4mm,2mm)--cycle;
+		}
+	}
+}
+
+\newtcolorbox{tcbcurtain}[2][]{%
+  base,
+  title=#2,
+%   boxed title style={overlay={
+%     \draw[colexam,line width=3pt,] (frame.north west)--(frame.north east);
+%   }},
+  coltitle=#1,
+  colback=#1,
+  overlay unbroken={
+    % \draw[colexam, line width=2pt,] ([yshift=-4.5pt]title.north west)--([xshift=-0.5pt, yshift=-4.5pt]title.north-|frame.east);
+    \draw[#1, line width=0.8pt,] (frame.north west)--(frame.north-|frame.east);
+  },
+}
+
+\newtcolorbox[use counter=example]{myexampleb}{%
+  base,
+  drop fuzzy shadow,
+  borderline west={3pt}{-3pt}{colexam},
+}
+
+\newtcolorbox[use counter=example]{myexamplec}{%
+  base,
+  drop fuzzy shadow,
+  coltitle=black,
+  borderline west={3pt}{-3pt}{teal!50},
+  attach boxed title to top left={xshift=-3mm, yshift*=-\tcboxedtitleheight/2},
+  boxed title style={right=3pt, bottom=3pt, overlay={
+    \draw[draw=teal!70, fill=teal!70, line join=round]
+      (frame.south west) -- (frame.north west) -- (frame.north east) --
+      (frame.south east) -- ++(-2pt, 0) -- ++(-2pt, -4pt) --
+      ++(-2pt, 4pt) -- cycle;
+  }},
+  overlay unbroken={
+    \scoped \shade[left color=teal!10!black, right color=teal]
+    ([yshift=-0.2pt]title.south west) -- ([xshift=-1.5pt, yshift=-0.2pt]title.south-|frame.west) -- ++(0, -6pt) -- cycle;
+  },
+}
+
+\newtcolorbox{tcbbubble}[2][]{%
+% Example Color Usage:
+% - teal:
+% - DarkGreen:
+  general,
+  title=#2,
+  drop fuzzy shadow,
+  coltitle=black,
+  borderline west={3pt}{-3pt}{#1!50},
+  attach boxed title to top left={xshift=-3mm, yshift*=-\tcboxedtitleheight/2},
+  boxed title style={right=3pt, bottom=3pt, overlay={
+    \draw[draw=#1!70, fill=#1!70, line join=round]
+      (frame.south west) -- (frame.north west) -- (frame.north east) --
+      (frame.south east) -- ++(-2pt, 0) -- ++(-2pt, -4pt) --
+      ++(-2pt, 4pt) -- cycle;
+  }},
+  overlay unbroken={
+    \scoped \shade[left color=#1!10!black, right color=#1]
+    ([yshift=-0.2pt]title.south west) -- ([xshift=-1.5pt, yshift=-0.2pt]title.south-|frame.west) -- ++(0, -6pt) -- cycle;
+  },
+}
+
+\newtcolorbox{headsup}[2][]{%
+  base,
+  title=#2,
+  coltitle=#1,
+  colback=#1,
+  drop fuzzy shadow,
+  borderline west={3pt}{-3pt}{#1},
+}

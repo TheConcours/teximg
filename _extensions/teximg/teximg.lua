@@ -1,11 +1,12 @@
 local system = require("pandoc.system")
 
 local tikz_doc_template = [[
-\documentclass{standalone}
+\documentclass{article}
 \usepackage[svgnames]{xcolor}
 \usepackage[most]{tcolorbox}
 \usepackage{preamble}
 \begin{document}
+\thispagestyle{empty}
 \nopagecolor
 %s
 \end{document}
@@ -18,17 +19,19 @@ local function tikz2image(src, filetype, outfile)
     f:write(tikz_doc_template:format(src))
     f:close()
     os.execute("lualatex tmp_tex.tex")
+    os.execute("pdfcrop tmp_tex.pdf")
     if filetype == "pdf" then
-        os.rename("tmp_tex.pdf", "att/" .. outfile)
+        os.rename("tmp_tex-crop.pdf", "att/" .. outfile)
     else
         -- os.execute("pdf2svg tmp_tex.pdf " .. outfile)
-        os.execute("magick convert -density 900 -units PixelsPerInch tmp_tex.pdf " .. outfile)
+        os.execute("magick convert -density 1200 -units PixelsPerInch tmp_tex-crop.pdf " .. outfile)
         os.rename(outfile, "att/" .. outfile)
     end
     -- use os.remove to delete the temporary files
     os.remove("tmp_tex.aux")
     os.remove("tmp_tex.log")
     os.remove("tmp_tex.pdf")
+    os.remove("tmp_tex-crop.pdf")
     os.remove("tmp_tex.tex")
 end
 
